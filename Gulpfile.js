@@ -22,6 +22,7 @@ gulp.task('watch', function() {
   gulp.watch('html/pages/**/*', ['compile-html']);
   gulp.watch(['html/{layouts,includes,helpers,data}/**/*'],
              ['compile-html:reset','compile-html']);
+  gulp.watch('js/**/*', ['compile-js']);
 });
 
 // Erases the dist folder
@@ -87,7 +88,8 @@ gulp.task('compile-html:reset', function(done) {
 gulp.task('compile-js', function() {
   return gulp.src([
     npmpath + 'jquery/dist/jquery.min.js',
-    npmpath + 'materialize-css/dist/js/materialize.min.js'
+    npmpath + 'materialize-css/dist/js/materialize.min.js',
+    'js/app.js'
   ]).pipe(concat('app.js'))
     .pipe(gulp.dest('./_site/js/'));
 });
